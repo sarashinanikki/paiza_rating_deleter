@@ -10,7 +10,7 @@ function delay_delete_rate() {
 }
 
 if (url.indexOf('result') !== -1) {
-    delete_rate();
+    if (document.getElementsByClassName('glicko_rating_area__box') !== null) delete_rate();
 }
 else {
     delay_delete_rate();
