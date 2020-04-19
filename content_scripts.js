@@ -6,12 +6,19 @@ function delete_rate() {
 }
 
 function delay_delete_rate() {
-    window.addEventListener('load',delete_rate(), false);
+    const jsInitCheckTimer = setInterval(jsLoaded, 500);
+    function jsLoaded() {
+        if (document.getElementsByClassName('glicko_rating_area__box') != null) {
+            clearInterval(jsInitCheckTimer);
+            delete_rate();
+        }
+    }
 }
 
 if (url.indexOf('result') !== -1) {
     if (document.getElementsByClassName('glicko_rating_area__box') !== null) delete_rate();
 }
 else {
+    window.addEventListener('load', delete_rate(), false);
     delay_delete_rate();
 }
